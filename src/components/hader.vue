@@ -6,6 +6,9 @@
         </div>
         <nav class="nav">
             <ul>
+                <li>
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
 
                 <li>
                     <RouterLink to="/SignUp">SignUp</RouterLink>
@@ -13,6 +16,7 @@
                 <li>
                     <RouterLink to="/LogIn">LogIn</RouterLink>
                 </li>
+                
 
             </ul>
         </nav>
@@ -46,10 +50,12 @@ export default {
 
   
 <style scoped>
+
 .header {
     background: #333;
     color: white;
     padding: 10px 0;
+    margin: 0%;
 }
 
 .container {
@@ -57,7 +63,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0%;
     padding: 0 20px;
 }
 
@@ -73,7 +79,7 @@ export default {
 }
 
 .nav ul li {
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .nav ul li a {
@@ -92,7 +98,7 @@ export default {
     background: white;
     height: 3px;
     width: 25px;
-    margin: 4px 0;
+    margin: 100px;
     transition: all 0.3s;
 }
 

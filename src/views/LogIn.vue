@@ -1,4 +1,5 @@
 <template>
+  <hader />git
     <div class="login-container">
       <h1 class="login-heading">Log In</h1>
       <form class="login-form" @submit="handleSubmit">
@@ -13,13 +14,22 @@
           <p v-if="errors.password" class="error-message">{{ errors.password }}</p>
         </div>
         <button type="submit" class="submit-btn">Log In</button>
+        <div class="reg">
+          <label for="regiration">Label:</label>
+          <input type="text" id="">
+        </div>
       </form>
     </div>
   </template>
   
   <script>
+import Hader from '@/components/hader.vue';
+
   
   export default {
+    components:{
+      Hader
+    },
   
     data() {
       return {

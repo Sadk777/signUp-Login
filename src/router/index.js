@@ -27,6 +27,7 @@ const router = createRouter({
       name: 'LogIn',
       component: LogIn
     },
+    
 
     
     {

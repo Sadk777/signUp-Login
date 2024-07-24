@@ -1,141 +1,156 @@
 <template>
-<hader />
-
-<div class="signup-container">
-    <h1 class="signup-heading">Sign Up</h1>
-    <form class="signup-form" @submit="handleSubmit">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" v-model="name" :class="{ 'error': errors.name }" />
-            <p v-if="errors.name" class="error-message">{{ errors.name }}</p>
+    <hader />
+    <div class="body">
+      <div class="signup-container">
+        <div class="image-container">
+          <!-- Background image will be set via CSS -->
         </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" v-model="email" :class="{ 'error': errors.email }" />
-            <p v-if="errors.email" class="error-message">{{ errors.email }}</p>
+        <div class="form-container">
+          <h1 class="signup-heading">Sign Up</h1>
+          <form class="signup-form" @submit="handleSubmit">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" v-model="name" :class="{ 'error': errors.name }" />
+              <p v-if="errors.name" class="error-message">{{ errors.name }}</p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" v-model="email" :class="{ 'error': errors.email }" />
+              <p v-if="errors.email" class="error-message">{{ errors.email }}</p>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" v-model="password" :class="{ 'error': errors.password }" />
+              <p v-if="errors.password" class="error-message">{{ errors.password }}</p>
+            </div>
+            <button type="submit" class="submit-btn">Register</button>
+          </form>
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" v-model="password" :class="{ 'error': errors.password }" />
-            <p v-if="errors.password" class="error-message">{{ errors.password }}</p>
-        </div>
-        <button type="submit" class="submit-btn">Register</button>
-    </form>
-</div>
-</template>
-
+      </div>
+    </div>
+  </template>
   
-<script>
-import hader from '@/components/hader.vue';
-export default {
-  components:{
-    hader
-  },
+  <script>
+  import hader from '@/components/hader.vue';
+  
+  export default {
+    components: {
+      hader
+    },
     name: 'SignUp',
     data() {
-        return {
-            name: '',
-            email: '',
-            password: '',
-            errors: {}
-        };
+      return {
+        name: '',
+        email: '',
+        password: '',
+        errors: {}
+      };
     },
     methods: {
-        validateForm() {
-            const errors = {};
-            if (!this.name.trim()) errors.name = 'Name is required';
-            if (!this.email.trim()) {
-                errors.email = 'Email is required';
-            } else if (!/\S+@\S+\.\S+/.test(this.email)) {
-                errors.email = 'Email is invalid';
-            }
-            if (!this.password.trim()) errors.password = 'Password is required';
-            else if (this.password.length < 6) errors.password = 'Password must be at least 6 characters long';
-
-            this.errors = errors;
-            return Object.keys(errors).length === 0;
-        },
-        handleSubmit(event) {
-            event.preventDefault();
-            if (this.validateForm()) {
-                // Handle form submission logic here
-                console.log('Form submitted with:', {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password
-                });
-                // Clear form fields after successful submission
-                this.name = '';
-                this.email = '';
-                this.password = '';
-                this.errors = {};
-            }
+      validateForm() {
+        const errors = {};
+        if (!this.name.trim()) errors.name = 'Name is required';
+        if (!this.email.trim()) {
+          errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(this.email)) {
+          errors.email = 'Email is invalid';
         }
-    }
-};
-</script>
-
+        if (!this.password.trim()) errors.password = 'Password is required';
+        else if (this.password.length < 6) errors.password = 'Password must be at least 6 characters long';
   
-<style scoped>
-.signup-container {
+        this.errors = errors;
+        return Object.keys(errors).length === 0;
+      },
+      handleSubmit(event) {
+        event.preventDefault();
+        if (this.validateForm()) {
+          console.log('Form submitted with:', {
+            name: this.name,
+            email: this.email,
+            password: this.password
+          });
+          this.name = '';
+          this.email = '';
+          this.password = '';
+          this.errors = {};
+        }
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .body {
+    background-color: rgb(0, 0, 0);
+  }
+  
+  .signup-container {
+    display: flex;
+    height: 100vh;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .image-container {
+    flex: 1;
+    background: url('../assets/pexels-olly-3760067.jpg') no-repeat center center;
+    background-size: 900px;
+  }
+  
+  .form-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #121212;
-    color: #FFFFFF;
     padding: 20px;
-    border-radius: 10px;
-    max-width: 500px;
-    margin: auto;
-}
-
-.signup-heading {
+    background-color: #FFFFFF;
+    width: 35%;
+  }
+  
+  .signup-heading {
     font-size: 2.5em;
-    color: #FFFFFF;
+    color: #121212;
     margin-bottom: 20px;
-}
-
-.signup-form {
+  }
+  
+  .signup-form {
     width: 100%;
-    background-color: rgba(18, 18, 18, 0.8);
     padding: 20px;
-    border-radius: 10px;
-}
-
-.form-group {
+  }
+  
+  .form-group {
     margin-bottom: 15px;
-}
-
-label {
+  }
+  
+  label {
     display: block;
     font-size: 1.2em;
-    color: #B3B3B3;
+    color: #121212;
     margin-bottom: 5px;
-}
-
-input {
+  }
+  
+  input {
     width: 100%;
     padding: 10px;
     font-size: 1em;
-    border: 1px solid #B3B3B3;
-    border-radius: 5px;
-    background-color: #1E1E1E;
-    color: #FFFFFF;
-}
-
-input.error {
+    border: none;
+    border-bottom: 1px solid #0c0b0b;
+    background-color: #FFF;
+    color: #121212;
+  }
+  
+  input.error {
     border-color: #FF4D4D;
-}
-
-.error-message {
+  }
+  
+  .error-message {
     color: #FF4D4D;
     font-size: 0.9em;
     margin: 5px 0 0 0;
-}
-
-button.submit-btn {
+  }
+  
+  button.submit-btn {
     width: 100%;
     padding: 10px;
     font-size: 1.2em;
@@ -145,9 +160,10 @@ button.submit-btn {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button.submit-btn:hover {
+  }
+  
+  button.submit-btn:hover {
     background-color: #9F6DF9;
-}
-</style>
+  }
+  </style>
+  

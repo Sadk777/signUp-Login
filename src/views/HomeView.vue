@@ -9,11 +9,18 @@ export default {
 
 <template>
 <hader />
+<div class="body">
+    
+
 
 <h1 class="homeHeading">Homepage</h1>
+</div>
 </template>
 
 <style>
+.body{
+    background-color: transparent;
+}
 .homeheading {
     color: rgb(255, 255, 255);
 
